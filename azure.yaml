@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: sensitive_data_processor
+hooks:
+  postdeploy:
+    windows:
+      shell: pwsh
+      run: ./scripts/post-up.ps1
+      interactive: true
+      continueOnError: false
+    posix:
+      shell: sh
+      run: ./scripts/post-up.sh
+      interactive: true
+      continueOnError: false
+services:
+  api:
+    project: ./sensitive_data_processor/
+    language: python
+    host: function
